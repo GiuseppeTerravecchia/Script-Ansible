@@ -1,0 +1,7 @@
+- hosts: localhost
+  tasks:
+  - name: Installing multiple python packages in Ansible
+    pip:
+      name: NumPy, Pandas, Keras, TensorFlow
+
+
