@@ -21,5 +21,5 @@
      script: test.py
      register: output
 
-   - name: Verifica
+   - name: Verification Pytorch
      debug: var=output.stdout_lines
