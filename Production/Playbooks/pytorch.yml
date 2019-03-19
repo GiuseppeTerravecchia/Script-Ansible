@@ -1,0 +1,29 @@
+---
+- name: Install Pytorch
+  hosts: localhost
+
+  tasks:
+   - name: Install python
+     apt: name=python state=latest
+
+   - name: Install python-pip
+     apt: name=python-pip state=latest
+
+   - name: Install numpy
+     pip:
+      name: numpy
+
+   - name: Install pytorch
+     pip:
+      name: https://download.pytorch.org/whl/cpu/torch-1.0.1.post2-cp27-cp27mu-linux_x86_64.whl 
+
+   - name: Install torchvision
+     pip:
+      name: torchvision
+   
+   - name: Test Pytorch
+     script: test.py
+     register: output
+
+   - name: Verification Pytorch
+     debug: var=output.stdout_lines

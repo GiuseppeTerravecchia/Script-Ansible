@@ -1,0 +1,27 @@
+---
+- name: Install Pytorch
+  hosts: localhost
+
+  tasks:
+   - name: Install a list of packages
+     apt:
+      name: "{{ packages }}"
+     vars:
+      packages:
+      - python
+      - python-pip
+
+
+   - name: Installing multiple python packages in Ansible
+     pip:
+      name: numpy,  https://download.pytorch.org/whl/cpu/torch-1.0.1.post2-cp27-cp27mu-linux_x86_64.whl, torchvision 
+      state: latest
+   
+   - name: Test Pytorch
+     script: test.py
+     register: output
+
+   - name: Verification
+     debug: var=output.stdout_lines
+
+   
